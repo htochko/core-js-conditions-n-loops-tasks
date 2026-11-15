@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,18 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let max = a;
+
+  if (b > max) {
+    max = b;
+  }
+
+  if (c > max) {
+    max = c;
+  }
+
+  return max;
 }
 
 /**
@@ -61,8 +71,10 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const dx = queen.x - king.x;
+  const dy = queen.y - king.y;
+  return dx === 0 || dy === 0 || dx === dy || dx === -dy;
 }
 
 /**
@@ -83,8 +95,10 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  const isTriangle = a + b > c && a + c > b && b + c > a;
+  const isIsosceles = a === b || b === c || a === c;
+  return isTriangle && isIsosceles;
 }
 
 /**
@@ -101,8 +115,41 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const tensDigit = Math.floor(num / 10);
+  const unitsDigit = num % 10;
+
+  let tens = '';
+  if (tensDigit === 1) {
+    tens = 'X';
+  } else if (tensDigit === 2) {
+    tens = 'XX';
+  } else if (tensDigit === 3) {
+    tens = 'XXX';
+  }
+
+  let units = '';
+  if (unitsDigit === 1) {
+    units = 'I';
+  } else if (unitsDigit === 2) {
+    units = 'II';
+  } else if (unitsDigit === 3) {
+    units = 'III';
+  } else if (unitsDigit === 4) {
+    units = 'IV';
+  } else if (unitsDigit === 5) {
+    units = 'V';
+  } else if (unitsDigit === 6) {
+    units = 'VI';
+  } else if (unitsDigit === 7) {
+    units = 'VII';
+  } else if (unitsDigit === 8) {
+    units = 'VIII';
+  } else if (unitsDigit === 9) {
+    units = 'IX';
+  }
+
+  return `${tens}${units}`;
 }
 
 /**
@@ -120,8 +167,62 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    let word = '';
+
+    switch (numberStr[i]) {
+      case '0':
+        word = 'zero';
+        break;
+      case '1':
+        word = 'one';
+        break;
+      case '2':
+        word = 'two';
+        break;
+      case '3':
+        word = 'three';
+        break;
+      case '4':
+        word = 'four';
+        break;
+      case '5':
+        word = 'five';
+        break;
+      case '6':
+        word = 'six';
+        break;
+      case '7':
+        word = 'seven';
+        break;
+      case '8':
+        word = 'eight';
+        break;
+      case '9':
+        word = 'nine';
+        break;
+      case '-':
+        word = 'minus';
+        break;
+      case '.':
+      case ',':
+        word = 'point';
+        break;
+      default:
+        break;
+    }
+
+    if (result === '') {
+      result = word;
+    } else {
+      result = `${result} ${word}`;
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -136,8 +237,19 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left += 1;
+    right -= 1;
+  }
+
+  return true;
 }
 
 /**
